@@ -1,0 +1,35 @@
+# DATABASE CONFIG
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/test
+    username: postgres
+    password: 123456
+    platform: postgres
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    generate-ddl: true
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+# SERVER CONFIG
+server:
+  servlet:
+    context-path: /api
+  port: 8080
+
+# Log
+#logging:
+#  pattern:
+#    console: %blue(%d{yyyy-MM-dd HH:mm:ss}) %cyan([%mdc]) %highlight(%level) %yellow(%logger{15}) -> %msg%n
+#    file: %blue(%d{yyyy-MM-dd HH:mm:ss}) %cyan([%mdc]) %highlight(%level) %yellow(%logger{15}) -> %msg%n
+#
+
+# Customize
+application:
+  jwt:
+    secret: abc123
+    expiration: 3333
