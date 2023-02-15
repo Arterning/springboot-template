@@ -58,6 +58,6 @@ springboot.starter
 
 ## Swagger2
 访问地址
-```http request
+```bash
 http://localhost:8080/api/swagger-ui.html
 ```
