@@ -32,6 +32,8 @@ dependencies {
     runtimeOnly 'com.h2database:h2:1.4.200'
     testImplementation 'org.springframework.boot:spring-boot-starter-test:2.3.12.RELEASE'
     annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    implementation "jakarta.xml.bind:jakarta.xml.bind-api:2.3.2"
+    implementation "org.glassfish.jaxb:jaxb-runtime:2.3.2"
 }
 
 group = 'cn.ning'

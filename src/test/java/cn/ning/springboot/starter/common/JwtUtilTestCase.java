@@ -25,7 +25,7 @@ public class JwtUtilTestCase {
         person.setFirstName("Adrian");
         person.setLastName("Adendrata");
         String actual = jwtUtil.generateToken(person);
-        log.info(actual);
+        //log.info(actual);
         Assert.assertNotNull(actual);
     }
 
@@ -37,7 +37,7 @@ public class JwtUtilTestCase {
         person.setLastName("Adendrata");
 
         String token = jwtUtil.generateToken(person);
-        log.info(token);
+        //log.info(token);
         Assert.assertNotNull(token);
 
         String lastName = jwtUtil.getClaims(token).get("personLastName").toString();
@@ -45,7 +45,7 @@ public class JwtUtilTestCase {
         Long personId = Long.parseLong(jwtUtil.getClaims(token).get("personId").toString());
         String id = jwtUtil.getClaims(token).getId();
         Date exp = jwtUtil.getClaims(token).getExpiration();
-        log.info(exp.toString());
+        //log.info(exp.toString());
 
         Assert.assertEquals(person.getLastName(), lastName);
         Assert.assertEquals(person.getFirstName(), firstName);
