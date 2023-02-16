@@ -1,9 +1,13 @@
-package cn.ning.springboot.starter.dto;
+package cn.ning.springboot.starter.common;
 
 import org.dozer.DozerBeanMapper;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpStatus;
 
+/**
+ * 带有属性复制功能的ResponseEntity
+ * @param <T>
+ */
 public class ResponseDto<T> extends HttpEntity<T> {
 
     private static final DozerBeanMapper modelMapper = new DozerBeanMapper();
@@ -31,7 +35,7 @@ public class ResponseDto<T> extends HttpEntity<T> {
         <T> ResponseDto<T> convertTo(Object entity, Class<T> aClass);
     }
 
-    private static class BodyBuilder  implements Builder{
+    private static class BodyBuilder implements Builder {
         private HttpStatus status;
 
         public BodyBuilder(HttpStatus status) {
@@ -39,8 +43,8 @@ public class ResponseDto<T> extends HttpEntity<T> {
         }
 
         public <T> ResponseDto<T> convertTo(Object entity, Class<T> aClass) {
-
             return new ResponseDto<>(modelMapper.map(entity, aClass), this.status);
         }
+
     }
 }

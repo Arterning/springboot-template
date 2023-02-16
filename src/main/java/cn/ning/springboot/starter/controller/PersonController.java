@@ -2,7 +2,7 @@ package cn.ning.springboot.starter.controller;
 
 import cn.ning.springboot.starter.consts.Constant;
 import cn.ning.springboot.starter.annotation.RequestDto;
-import cn.ning.springboot.starter.dto.ResponseDto;
+import cn.ning.springboot.starter.common.ResponseDto;
 import cn.ning.springboot.starter.dto.PersonDto;
 import cn.ning.springboot.starter.entity.Person;
 import cn.ning.springboot.starter.service.PersonService;

@@ -9,7 +9,7 @@ import lombok.Data;
  *
  */
 @Data
-public class ResultBean<T> implements Serializable, IErrorMsg {
+public class HttpResult<T> implements Serializable, IErrorMsg {
 
     private static final long serialVersionUID = 1L;
 
@@ -42,18 +42,22 @@ public class ResultBean<T> implements Serializable, IErrorMsg {
      */
     private T data;
 
-    public ResultBean() {
+    public HttpResult() {
         super();
     }
 
-    public ResultBean(T data) {
+    public HttpResult(T data) {
         super();
         this.data = data;
     }
 
-    public ResultBean(Throwable e) {
+    public HttpResult(Throwable e) {
         super();
         this.msg = e.toString();
         this.code = UNKNOWN_EXCEPTION;
+    }
+
+    public static <T> HttpResult<T> ok(T data) {
+        return new HttpResult<>(data);
     }
 }

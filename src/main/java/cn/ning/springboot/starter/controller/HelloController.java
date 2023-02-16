@@ -1,5 +1,6 @@
 package cn.ning.springboot.starter.controller;
 
+import cn.ning.springboot.starter.common.HttpResult;
 import cn.ning.springboot.starter.properties.ApplicationProperties;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +27,11 @@ public class HelloController {
     public ResponseEntity<?> postThing(@RequestBody HelloVO helloVO) {
         log.info("message {}", helloVO.getMessage());
         return ResponseEntity.ok(properties.getJwt());
+    }
+
+    @PostMapping
+    public HttpResult<?> postHello() {
+        return HttpResult.ok("welcome");
     }
 
     static class HelloVO implements Serializable {

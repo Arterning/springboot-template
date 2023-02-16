@@ -1,5 +1,6 @@
 package cn.ning.springboot.starter.util;
 
+import lombok.SneakyThrows;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
@@ -14,6 +15,7 @@ public class CopyUtil {
     }
 
 
+    @SneakyThrows
     public static void copyProperties(Object s, Object t) {
         BeanUtils.copyProperties(s, t);
     }
