@@ -1,4 +1,4 @@
-package cn.ning.springboot.starter.common;
+package cn.ning.springboot.starter.util;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.BeanWrapper;

@@ -1,4 +1,4 @@
-package cn.ning.springboot.starter.common;
+package cn.ning.springboot.starter.consts;
 
 public class Constant {
     public static final String BASE = "";

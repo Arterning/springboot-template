@@ -1,6 +1,7 @@
 package cn.ning.springboot.starter.common;
 
 import cn.ning.springboot.starter.entity.Person;
+import cn.ning.springboot.starter.util.JwtUtil;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Assert;
 import org.junit.Test;

@@ -1,7 +1,7 @@
 package cn.ning.springboot.starter.service;
 
 import cn.ning.springboot.starter.annotation.LogExecutionTime;
-import cn.ning.springboot.starter.common.CopyUtil;
+import cn.ning.springboot.starter.util.CopyUtil;
 import cn.ning.springboot.starter.entity.Person;
 import cn.ning.springboot.starter.repository.PersonRepository;
 import org.springframework.beans.factory.annotation.Autowired;

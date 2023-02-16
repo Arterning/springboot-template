@@ -1,4 +1,4 @@
-package cn.ning.springboot.starter.common;
+package cn.ning.springboot.starter.util;
 
 import cn.ning.springboot.starter.entity.Person;
 import cn.ning.springboot.starter.properties.ApplicationProperties;
