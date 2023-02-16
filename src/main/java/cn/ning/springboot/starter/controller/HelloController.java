@@ -29,7 +29,7 @@ public class HelloController {
         return ResponseEntity.ok(properties.getJwt());
     }
 
-    @PostMapping
+    @PutMapping
     public HttpResult<?> postHello() {
         return HttpResult.ok("welcome");
     }
