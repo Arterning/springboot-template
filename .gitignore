@@ -12,3 +12,5 @@ buildNumber.properties
 *.iml
 .idea
 target
+build
+.gradle
