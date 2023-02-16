@@ -1,0 +1,14 @@
+spring:
+  # 页面方面的配置
+  thymeleaf:
+    encoding: UTF-8
+    # 热部署静态文件
+    cache: false
+    # 让thymeleaf解析标签没有闭合时通过
+    mode: LEGACYHTML5
+
+  http:
+    # 配置上传文件限制大小
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 10MB

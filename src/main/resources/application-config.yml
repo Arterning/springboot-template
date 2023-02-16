@@ -1,0 +1,9 @@
+# Customize
+application:
+  jwt:
+    secret: abc123
+    expiration: 3333
+
+demo:
+  id: 1
+  val: 123

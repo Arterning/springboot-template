@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8"/>
+    <title>主页</title>
+    <link href="../static/css/test.css" th:href="@{/css/test.css}" rel="stylesheet"/>
+</head>
+<body>
+<table border="1">
+    <tr th:each="user : ${userList}">
+        <td th:text="${user.id}" class="test">1</td>
+        <td th:text="${user.val}">2</td>
+    </tr>
+</table>
+<input type="button" value="上一页" th:onclick="'gotoPage('+${pageNum-1}+', '+${pageSum}+')'" th:if="${pageNum ne 1}"/>
+<span th:text="${pageNum}"></span> / <span th:text="${pageSum}"></span>
+<input type="button" value="下一页" th:onclick="'gotoPage('+${pageNum+1}+', '+${pageSum}+')'" th:if="${pageNum ne pageSum}"/>
+<br/>
+
+<form th:action="@{/test}" method="post">
+    <input type="number" th:value="${pageNum}" name="pageNum"/>
+    <input type="submit" value="跳转"/>
+</form>
+
+
+<a th:href="@{/druid/index.html}" target="_blank">druid监控平台</a>
+
+<div>
+    <p>上传文件：</p>
+    <form th:action="@{/upload}" method="post" enctype="multipart/form-data" >
+        <input type="file" name="file">
+        <input type="submit">
+    </form>
+</div>
+
+<script type="application/javascript" src="../static/js/test.js" th:src="@{/js/test.js}"/>
+<script type="application/javascript" >
+    function gotoPage(pageNum, pageSum) {
+        var result = jumpPage(pageNum, pageSum);
+        if (result == true) {
+            window.location.href = "?pageNum=" + pageNum;
+        } else {
+            alert(result);
+        }
+    }
+</script>
+</body>
+</html>
