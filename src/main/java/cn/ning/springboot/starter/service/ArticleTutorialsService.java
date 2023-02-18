@@ -9,6 +9,8 @@ import cn.ning.springboot.starter.vo.ArticleTutorialsVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.NoSuchElementException;
@@ -43,6 +45,12 @@ public class ArticleTutorialsService {
 
     public Page<ArticleTutorialsDTO> query(ArticleTutorialsQueryVO vO) {
         throw new UnsupportedOperationException();
+    }
+
+    public Page<ArticleTutorialsDTO> queryAll(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<ArticleTutorials> users = articleTutorialsRepository.findAll(pageable);
+        return users.map(this::toDTO);
     }
 
     private ArticleTutorialsDTO toDTO(ArticleTutorials original) {

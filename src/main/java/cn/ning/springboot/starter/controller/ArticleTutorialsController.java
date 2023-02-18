@@ -54,4 +54,13 @@ public class ArticleTutorialsController {
     public Page<ArticleTutorialsDTO> query(@Valid ArticleTutorialsQueryVO vO) {
         return articleTutorialsService.query(vO);
     }
+
+    @GetMapping("/page")
+    @ApiOperation("查询所有")
+    public Page<ArticleTutorialsDTO> queryAll(
+            @RequestParam(defaultValue = "0") int pageNumber,
+            @RequestParam(defaultValue = "10") int pageSize) {
+        return articleTutorialsService.queryAll(pageNumber, pageSize);
+    }
+
 }
