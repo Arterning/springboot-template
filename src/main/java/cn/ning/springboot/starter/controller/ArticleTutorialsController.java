@@ -15,6 +15,9 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 
+/**
+ * jpa 代码插件自动生成
+ */
 @Api(tags = "")
 @Validated
 @RestController

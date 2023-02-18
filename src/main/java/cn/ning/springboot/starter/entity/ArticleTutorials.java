@@ -6,6 +6,9 @@ import lombok.experimental.Accessors;
 import javax.persistence.*;
 import java.io.Serializable;
 
+/**
+ * jpa 代码插件自动生成
+ */
 @Data
 @Entity
 @Accessors(chain = true)
