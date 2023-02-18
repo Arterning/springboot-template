@@ -8,6 +8,7 @@ import cn.ning.springboot.starter.vo.ArticleTutorialsUpdateVO;
 import cn.ning.springboot.starter.vo.ArticleTutorialsVO;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Example;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -44,11 +45,16 @@ public class ArticleTutorialsService {
     }
 
     public Page<ArticleTutorialsDTO> query(ArticleTutorialsQueryVO vO) {
-        throw new UnsupportedOperationException();
+        ArticleTutorials articleTutorials = new ArticleTutorials();
+        BeanUtils.copyProperties(vO, articleTutorials);
+        Example<ArticleTutorials> example = Example.of(articleTutorials);
+        Pageable pageable = PageRequest.of(0, 10);
+        Page<ArticleTutorials> all = articleTutorialsRepository.findAll(example, pageable);
+        return all.map(this::toDTO);
     }
 
     public Page<ArticleTutorialsDTO> queryAll(int pageNumber, int pageSize) {
-        Pageable pageable = PageRequest.of(0, 10);
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
         Page<ArticleTutorials> users = articleTutorialsRepository.findAll(pageable);
         return users.map(this::toDTO);
     }
