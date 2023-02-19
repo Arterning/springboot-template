@@ -44,11 +44,11 @@ public class ArticleTutorialsService {
         return toDTO(original);
     }
 
-    public Page<ArticleTutorialsDTO> query(ArticleTutorialsQueryVO vO) {
+    public Page<ArticleTutorialsDTO> query(ArticleTutorialsQueryVO vO, int pageNumber, int pageSize) {
         ArticleTutorials articleTutorials = new ArticleTutorials();
         BeanUtils.copyProperties(vO, articleTutorials);
         Example<ArticleTutorials> example = Example.of(articleTutorials);
-        Pageable pageable = PageRequest.of(0, 10);
+        Pageable pageable = PageRequest.of(pageNumber, pageSize);
         Page<ArticleTutorials> all = articleTutorialsRepository.findAll(example, pageable);
         return all.map(this::toDTO);
     }

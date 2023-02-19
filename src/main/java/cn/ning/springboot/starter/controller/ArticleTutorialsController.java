@@ -17,6 +17,7 @@ import javax.validation.constraints.NotNull;
 
 /**
  * jpa 代码插件自动生成
+ * 标准的 restful API
  */
 @Api(tags = "")
 @Validated
@@ -54,16 +55,11 @@ public class ArticleTutorialsController {
 
     @GetMapping
     @ApiOperation("自定义查询 ")
-    public Page<ArticleTutorialsDTO> query(@Valid ArticleTutorialsQueryVO vO) {
-        return articleTutorialsService.query(vO);
+    public Page<ArticleTutorialsDTO> query(@Valid ArticleTutorialsQueryVO vO,
+                                           @RequestParam(defaultValue = "0") int pageNumber,
+                                           @RequestParam(defaultValue = "10") int pageSize) {
+        return articleTutorialsService.query(vO, pageNumber, pageSize);
     }
 
-    @GetMapping("/page")
-    @ApiOperation("查询所有")
-    public Page<ArticleTutorialsDTO> queryAll(
-            @RequestParam(defaultValue = "0") int pageNumber,
-            @RequestParam(defaultValue = "10") int pageSize) {
-        return articleTutorialsService.queryAll(pageNumber, pageSize);
-    }
 
 }
