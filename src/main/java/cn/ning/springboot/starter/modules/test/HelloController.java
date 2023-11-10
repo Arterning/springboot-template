@@ -1,4 +1,4 @@
-package cn.ning.springboot.starter.controller;
+package cn.ning.springboot.starter.modules.test;
 
 import cn.ning.springboot.starter.common.HttpResult;
 import cn.ning.springboot.starter.properties.ApplicationProperties;

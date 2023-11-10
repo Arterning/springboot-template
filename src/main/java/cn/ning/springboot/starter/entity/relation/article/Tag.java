@@ -7,6 +7,9 @@ import javax.persistence.*;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+/**
+ * 文章标签
+ */
 @Entity
 @Table(name = "article_tags")
 public class Tag {

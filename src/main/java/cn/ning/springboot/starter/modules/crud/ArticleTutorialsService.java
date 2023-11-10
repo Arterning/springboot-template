@@ -1,7 +1,7 @@
-package cn.ning.springboot.starter.service;
+package cn.ning.springboot.starter.modules.crud;
 
 import cn.ning.springboot.starter.dto.ArticleTutorialsDTO;
-import cn.ning.springboot.starter.entity.ArticleTutorials;
+import cn.ning.springboot.starter.entity.relation.article.Tutorial;
 import cn.ning.springboot.starter.repository.ArticleTutorialsRepository;
 import cn.ning.springboot.starter.vo.ArticleTutorialsQueryVO;
 import cn.ning.springboot.starter.vo.ArticleTutorialsUpdateVO;
@@ -23,7 +23,7 @@ public class ArticleTutorialsService {
     private ArticleTutorialsRepository articleTutorialsRepository;
 
     public Long save(ArticleTutorialsVO vO) {
-        ArticleTutorials bean = new ArticleTutorials();
+        Tutorial bean = new Tutorial();
         BeanUtils.copyProperties(vO, bean);
         bean = articleTutorialsRepository.save(bean);
         return bean.getId();
@@ -34,38 +34,38 @@ public class ArticleTutorialsService {
     }
 
     public void update(Long id, ArticleTutorialsUpdateVO vO) {
-        ArticleTutorials bean = requireOne(id);
+        Tutorial bean = requireOne(id);
         BeanUtils.copyProperties(vO, bean);
         articleTutorialsRepository.save(bean);
     }
 
     public ArticleTutorialsDTO getById(Long id) {
-        ArticleTutorials original = requireOne(id);
+        Tutorial original = requireOne(id);
         return toDTO(original);
     }
 
     public Page<ArticleTutorialsDTO> query(ArticleTutorialsQueryVO vO, int pageNumber, int pageSize) {
-        ArticleTutorials articleTutorials = new ArticleTutorials();
-        BeanUtils.copyProperties(vO, articleTutorials);
-        Example<ArticleTutorials> example = Example.of(articleTutorials);
+        Tutorial Tutorial = new Tutorial();
+        BeanUtils.copyProperties(vO, Tutorial);
+        Example<Tutorial> example = Example.of(Tutorial);
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        Page<ArticleTutorials> all = articleTutorialsRepository.findAll(example, pageable);
+        Page<Tutorial> all = articleTutorialsRepository.findAll(example, pageable);
         return all.map(this::toDTO);
     }
 
     public Page<ArticleTutorialsDTO> queryAll(int pageNumber, int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        Page<ArticleTutorials> users = articleTutorialsRepository.findAll(pageable);
+        Page<Tutorial> users = articleTutorialsRepository.findAll(pageable);
         return users.map(this::toDTO);
     }
 
-    private ArticleTutorialsDTO toDTO(ArticleTutorials original) {
+    private ArticleTutorialsDTO toDTO(Tutorial original) {
         ArticleTutorialsDTO bean = new ArticleTutorialsDTO();
         BeanUtils.copyProperties(original, bean);
         return bean;
     }
 
-    private ArticleTutorials requireOne(Long id) {
+    private Tutorial requireOne(Long id) {
         return articleTutorialsRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("Resource not found: " + id));
     }

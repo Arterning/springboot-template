@@ -2,7 +2,10 @@ package cn.ning.springboot.starter.entity.relation.article;
 
 import javax.persistence.*;
 
-
+/**
+ * 文章作者
+ * 和Tutorial一对一
+ */
 @Entity
 @Table(name = "article_tutorial_author")
 public class TutorialAuthor {

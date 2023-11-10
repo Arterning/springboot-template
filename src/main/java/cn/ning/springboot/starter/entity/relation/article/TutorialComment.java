@@ -2,11 +2,15 @@ package cn.ning.springboot.starter.entity.relation.article;
 
 import javax.persistence.*;
 
+/**
+ * 文章评论
+ */
 @Entity
 @Table(name = "article_toturial_comments")
 public class TutorialComment {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Lob

@@ -1,7 +1,6 @@
-package cn.ning.springboot.starter.controller;
+package cn.ning.springboot.starter.modules.crud;
 
 import cn.ning.springboot.starter.dto.ArticleTutorialsDTO;
-import cn.ning.springboot.starter.service.ArticleTutorialsService;
 import cn.ning.springboot.starter.vo.ArticleTutorialsQueryVO;
 import cn.ning.springboot.starter.vo.ArticleTutorialsUpdateVO;
 import cn.ning.springboot.starter.vo.ArticleTutorialsVO;

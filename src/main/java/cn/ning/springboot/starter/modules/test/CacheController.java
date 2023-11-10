@@ -1,4 +1,4 @@
-package cn.ning.springboot.starter.controller;
+package cn.ning.springboot.starter.modules.test;
 
 
 import cn.ning.springboot.starter.service.CacheService;

@@ -5,11 +5,15 @@ import java.util.Set;
 
 import javax.persistence.*;
 
+/**
+ * 文章
+ */
 @Entity
 @Table(name = "article_tutorials")
 public class Tutorial {
 
   @Id
+  @Column(name = "id", nullable = false)
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
@@ -22,7 +26,10 @@ public class Tutorial {
   @Column(name = "published")
   private boolean published;
 
-  @OneToMany(mappedBy = "tutorial")
+  @OneToMany(mappedBy = "tutorial", cascade = {
+          CascadeType.PERSIST,
+          CascadeType.MERGE
+  })
   private Set<TutorialComment> comments = new HashSet<>();
 
   @ManyToMany(fetch = FetchType.LAZY,
@@ -99,4 +106,16 @@ public class Tutorial {
     return "Tutorial [id=" + id + ", title=" + title + ", desc=" + description + ", published=" + published + "]";
   }
 
+
+  public void setId(long id) {
+    this.id = id;
+  }
+
+  public Set<TutorialComment> getComments() {
+    return comments;
+  }
+
+  public void setComments(Set<TutorialComment> comments) {
+    this.comments = comments;
+  }
 }

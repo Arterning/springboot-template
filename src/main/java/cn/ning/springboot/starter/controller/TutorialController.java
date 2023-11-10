@@ -1,8 +1,12 @@
 package cn.ning.springboot.starter.controller;
 
 
+import cn.ning.springboot.starter.dto.ArticleTutorialsDTO;
+import cn.ning.springboot.starter.entity.relation.article.Tag;
 import cn.ning.springboot.starter.entity.relation.article.Tutorial;
+import cn.ning.springboot.starter.entity.relation.article.TutorialComment;
 import cn.ning.springboot.starter.exception.ResourceNotFoundException;
+import cn.ning.springboot.starter.repository.TagRepository;
 import cn.ning.springboot.starter.repository.TutorialRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -10,14 +14,18 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 @CrossOrigin(origins = "http://localhost:8081")
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/v1")
 public class TutorialController {
 
   @Autowired
   TutorialRepository tutorialRepository;
+
+  @Autowired
+  TagRepository tagRepository;
 
   @GetMapping("/tutorials")
   public ResponseEntity<List<Tutorial>> getAllTutorials(@RequestParam(required = false) String title) {
@@ -44,9 +52,30 @@ public class TutorialController {
   }
 
   @PostMapping("/tutorials")
-  public ResponseEntity<Tutorial> createTutorial(@RequestBody Tutorial tutorial) {
-    Tutorial _tutorial = tutorialRepository.save(new Tutorial(tutorial.getTitle(), tutorial.getDescription(), true));
-    return new ResponseEntity<>(_tutorial, HttpStatus.CREATED);
+  public ResponseEntity<?> createTutorial(@RequestBody ArticleTutorialsDTO request) {
+    Tutorial tutorial = new Tutorial();
+    tutorial.setTitle(request.getTitle());
+    tutorial.setDescription(request.getDescription());
+    tutorial.setPublished(request.getPublished());
+
+    // 一对多关系
+    Set<TutorialComment> set = request.getComments().stream().map(co -> {
+      TutorialComment tutorialComment = new TutorialComment();
+      tutorialComment.setContent(co);
+      tutorialComment.setTutorial(tutorial);
+      return tutorialComment;
+    }).collect(Collectors.toSet());
+    tutorial.setComments(set);
+
+    // 多对多关系
+    Set<Tag> tags = request.getTags().stream().map(tag -> {
+      Tag entity = new Tag();
+      entity.setName(tag);
+      return entity;
+    }).collect(Collectors.toSet());
+    tutorial.setTags(tags);
+
+    return new ResponseEntity<>("OK", HttpStatus.CREATED);
   }
 
   @PutMapping("/tutorials/{id}")
